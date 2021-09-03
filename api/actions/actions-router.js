@@ -9,12 +9,16 @@ const {
 
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
+router.get("/", (req, res) => {
   Actions.get()
     .then(act => {
       res.status(200).json(act);
     })
-    .catch(next())
+    .catch(err => {
+      res.status(500).json({
+        message: err.message
+      })
+    })
 })
 
 router.get("/:id", validateActionId, (req, res) => {
