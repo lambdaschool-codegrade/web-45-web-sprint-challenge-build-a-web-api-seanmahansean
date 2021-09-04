@@ -22,11 +22,7 @@ router.get("/", (req, res) => {
 })
 
 router.get("/:id", validateActionId, (req, res) => {
-  Actions.get(req.params.id)
-    .then(id => {
-      res.status(200).json(id)
-    })
-    .catch(err)
+  res.json(req.action)
 })
 
 router.post("/", (req, res, next) => {
